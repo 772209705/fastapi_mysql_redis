@@ -1,0 +1,223 @@
+2023-05-10 17:54:15,306 - INFO - E:\test\qc-web\qc-api\.\api\index\product.py[line: 14] - 获取列表数据：[(1, 'http://pic-ighk-test.madnest.net/pic/202304/1681809966643.png', 'IGameBuy-香港-测试环境', 'https://www-ighk-test.madnest.net/', 'test', 1), (2, '2', '2', '3', '3', 2), (3, '2', '2', '3', '3', 2), (4, '2', '2', '3', '3', 2), (5, '2', '2', '3', '3', 2), (6, '22232323', '小欧', 'str', 'str', 1), (7, '22232323', '小欧s', 'str', 'str', 1), (8, '', '', '', '', 33), (9, '22232323', '小欧s', 'str', 'str', 1), (10, '22232323', '小欧s', 'str', 'str', 0), (11, '222323293', 'sdsd', 'sdsd', 'test', 133), (12, '222323293', '小欧s', ',', 'test', 133)] 
+2023-05-11 15:41:02,032 - INFO - 
+                UPDATE product
+                SET images= '222323293', title= 'ds    sd '
+                WHERE id = 12
+     
+2023-05-11 15:43:25,662 - INFO - debug_sql - 
+                UPDATE product
+                SET images= '222323293', title= 'ds    sd '
+                WHERE id = 12
+     
+2023-05-11 15:43:53,734 - INFO - debug_sql - 
+                UPDATE product
+                SET images= '222323293', title= 'ds    sd '
+                WHERE id = 12
+     
+2023-05-11 15:46:25,204 - ERROR - E:\test\qc-web\qc-api\.\api\index\product.py[line: 28] -  测试订单 
+2023-05-11 15:46:25,205 - WARNING - E:\test\qc-web\qc-api\.\api\index\product.py[line: 29] -  测试订单 
+2023-05-11 15:46:25,207 - INFO - E:\test\qc-web\qc-api\.\api\index\product.py[line: 30] - 测试订单 
+2023-05-11 15:46:25,209 - INFO - debug_sql - 
+                UPDATE product
+                SET images= '222323293', title= 'ds    sd '
+                WHERE id = 12
+     
+2023-05-11 15:47:19,839 - INFO - debug_sql - 
+                UPDATE product
+                SET images= '222323293', title= 'ds    sd '
+                WHERE id = 12
+     
+2023-05-11 15:48:26,729 - INFO - debug_sql - 
+                UPDATE product
+                SET images= '222323293', title= 'ds    sd '
+                WHERE id = 12
+     
+2023-05-11 15:49:30,057 - INFO - debug_sql - 
+                UPDATE product
+                SET images= '222323293', title= 'ds    sd '
+                WHERE id = 12
+     
+2023-05-11 15:50:37,832 - INFO - debug_sql - 
+                UPDATE product
+                SET images= '222323293', title= 'ds    sd '
+                WHERE id = 12
+     
+2023-05-11 15:51:55,898 - INFO - debug_sql - 
+                UPDATE product
+                SET images= '222323293', title= 'ds    sd '
+                WHERE id = 12
+     
+2023-05-11 15:52:51,249 - DEBUG - E:\test\qc-web\qc-api\.\api\index\product.py[line: 29] - 测试订单 
+2023-05-11 15:52:51,251 - INFO - debug_sql - 
+                UPDATE product
+                SET images= '222323293', title= 'ds    sd '
+                WHERE id = 12
+     
+2023-05-11 15:54:12,478 - DEBUG - debug_sql - 
+                UPDATE product
+                SET images= '', url= 'sf   dfsf', env= 'tes434t'
+                WHERE id = 12
+     
+2023-05-11 15:58:24,068 - DEBUG - debug_sql - 
+               INSERT INTO 
+                    product (images, title, url, env, sort_key) 
+               VALUES 
+                    ('22232323','str','str','str','1')
+                
+2023-05-12 10:40:11,262 - DEBUG - debug_sql - 
+               INSERT INTO 
+                    product (images, title, url, env, sort_key) 
+               VALUES 
+                    ('22232323','str','str','str','1')
+                
+2023-05-12 10:44:12,539 - DEBUG - debug_sql - 
+               INSERT INTO 
+                    product (images, title, url, env, sort_key) 
+               VALUES 
+                    ('22232323','str','str','str','1')
+                
+2023-05-12 10:44:12,811 - ERROR - E:\test\qc-web\qc-api\.\handlers\authorization_interceptor.py[line: 32] -  [] 
+2023-05-12 10:50:34,277 - DEBUG - debug_sql - 
+               INSERT INTO 
+                    product (images, title, url, env, sort_key) 
+               VALUES 
+                    ('22232323','str','str','str','1')
+                
+2023-05-12 10:51:33,740 - DEBUG - debug_sql - 
+               INSERT INTO 
+                    product (images, title, url, env, sort_key, create_time) 
+               VALUES 
+                    ('22232323','str','str','str','1')
+                
+2023-05-12 10:51:33,986 - ERROR - E:\test\qc-web\qc-api\.\handlers\authorization_interceptor.py[line: 32] -  [] 
+2023-05-12 10:51:37,509 - DEBUG - debug_sql - 
+               INSERT INTO 
+                    product (images, title, url, env, sort_key, create_time) 
+               VALUES 
+                    ('22232323','str','str','str','1')
+                
+2023-05-12 10:51:37,514 - ERROR - E:\test\qc-web\qc-api\.\handlers\authorization_interceptor.py[line: 32] -  [] 
+2023-05-12 10:51:41,733 - DEBUG - debug_sql - 
+               INSERT INTO 
+                    product (images, title, url, env, sort_key, create_time) 
+               VALUES 
+                    ('22232323','str','str','str','1')
+                
+2023-05-12 10:51:41,739 - ERROR - E:\test\qc-web\qc-api\.\handlers\authorization_interceptor.py[line: 32] -  [] 
+2023-05-12 10:54:02,849 - DEBUG - debug_sql - 
+               INSERT INTO 
+                    product (images, title, url, env, sort_key, create_time) 
+               VALUES 
+                    ('22232323','str','str','str','1')
+                
+2023-05-12 10:54:03,131 - ERROR - E:\test\qc-web\qc-api\.\handlers\authorization_interceptor.py[line: 33] -  [] 
+2023-05-12 10:54:28,697 - DEBUG - debug_sql - 
+               INSERT INTO 
+                    product (images, title, url, env, sort_key, create_time) 
+               VALUES 
+                    ('22232323','str','str','str','1')
+                
+2023-05-12 10:54:28,953 - ERROR - E:\test\qc-web\qc-api\.\handlers\authorization_interceptor.py[line: 33] -  [] 
+2023-05-12 10:58:01,848 - DEBUG - debug_sql - 
+               INSERT INTO 
+                    product (images, title, url, env, sort_key, create_time) 
+               VALUES 
+                    ('22232323','str','str','str','1','None')
+                
+2023-05-12 10:58:02,088 - ERROR - E:\test\qc-web\qc-api\.\handlers\authorization_interceptor.py[line: 33] -  [] 
+2023-05-12 10:58:52,813 - DEBUG - debug_sql - 
+               INSERT INTO 
+                    product (images, title, url, env, sort_key, create_time) 
+               VALUES 
+                    ('22232323','str','str','str','1','<class 'datetime.datetime'>')
+                
+2023-05-12 10:58:53,075 - ERROR - E:\test\qc-web\qc-api\.\handlers\authorization_interceptor.py[line: 33] -  [] 
+2023-05-12 10:59:23,418 - DEBUG - debug_sql - 
+               INSERT INTO 
+                    product (images, title, url, env, sort_key, create_time) 
+               VALUES 
+                    ('22232323','str','str','str','1','None')
+                
+2023-05-12 10:59:23,661 - ERROR - E:\test\qc-web\qc-api\.\handlers\authorization_interceptor.py[line: 33] -  [] 
+2023-05-12 11:00:31,996 - DEBUG - debug_sql - 
+               INSERT INTO 
+                    product (images, title, url, env, sort_key, create_time) 
+               VALUES 
+                    ('22232323','str','str','str','1','2023-05-12 11:00:21.340856')
+                
+2023-05-12 11:02:39,564 - DEBUG - debug_sql - 
+               INSERT INTO 
+                    product (images, title, url, env, sort_key, create_time) 
+               VALUES 
+                    ('22232323','str','str','str','1','2023-05-12 11:02:36')
+                
+2023-05-12 11:04:39,132 - DEBUG - debug_sql - SELECT * FROM product 
+2023-05-12 11:04:39,430 - INFO - E:\test\qc-web\qc-api\.\api\index\product.py[line: 14] - 获取列表数据：[(1, 'http://pic-ighk-test.madnest.net/pic/202304/1681809966643.png', 'IGameBuy-香港-测试环境', 'https://www-ighk-test.madnest.net/', 'test', 1, None), (2, '2', '2', '3', '3', 2, None), (3, '2', '2', '3', '3', 2, None), (4, '2', '2', '3', '3', 2, None), (5, '2', '2', '3', '3', 2, None), (6, '22232323', '小欧', 'str', 'str', 1, None), (7, '22232323', '小欧s', 'str', 'str', 1, None), (8, '', '', '', '', 33, None), (9, '22232323', '小欧s', 'str', 'str', 1, None), (10, '22232323', '小欧s', 'str', 'str', 0, None), (11, 'sddasd', 'sdsd', 'sdsd', '55555', 222, None), (12, '', 'ds    sd ', 'sf 方式  dfsf', 'tes434t', 133, None), (13, '22232323', 'str', 'str', 'str', 1, datetime.datetime(2023, 5, 12, 10, 40, 53)), (14, '22232323', 'str', 'str', 'str', 1, None), (15, '22232323', 'str', 'str', 'str', 1, datetime.datetime(2023, 5, 12, 11, 0, 21, 340856)), (16, '22232323', 'str', 'str', 'str', 1, datetime.datetime(2023, 5, 12, 11, 2, 36))] 
+2023-05-12 15:51:51,787 - DEBUG - debug_sql - 
+               INSERT INTO 
+                    product (images, title, url, env, sort_key, create_time) 
+               VALUES 
+                    ('22232323','str','None','None','None','2023-05-12 15:51:45')
+                
+2023-05-12 15:51:52,088 - ERROR - E:\test\qc-web\qc-api\.\handlers\authorization_interceptor.py[line: 31] -  [] 
+2023-05-12 15:53:56,309 - DEBUG - debug_sql - 
+               INSERT INTO 
+                    product (images, title, url, env, sort_key, create_time) 
+               VALUES 
+                    ('22232323','str','None','None',None,'2023-05-12 15:53:46')
+                
+2023-05-12 15:53:56,586 - ERROR - E:\test\qc-web\qc-api\.\handlers\authorization_interceptor.py[line: 31] -  [] 
+2023-05-12 15:54:53,332 - DEBUG - debug_sql - 
+               INSERT INTO 
+                    product (images, title, url, env, sort_key, create_time) 
+               VALUES 
+                    ('22232323','str','None','None','1','2023-05-12 15:54:48')
+                
+2023-05-12 15:55:34,903 - DEBUG - debug_sql - 
+               INSERT INTO 
+                    product (images, title, url, env, sort_key, create_time) 
+               VALUES 
+                    ('22232323','str','','','1','2023-05-12 15:55:29')
+                
+2023-05-12 15:56:04,568 - DEBUG - debug_sql - SELECT * FROM product 
+2023-05-12 15:56:04,801 - INFO - E:\test\qc-web\qc-api\.\api\index\product.py[line: 14] - 获取列表数据：[(1, 'http://pic-ighk-test.madnest.net/pic/202304/1681809966643.png', 'IGameBuy-香港-测试环境', 'https://www-ighk-test.madnest.net/', 'test', 1, None), (2, '2', '2', '3', '3', 2, None), (3, '2', '2', '3', '3', 2, None), (4, '2', '2', '3', '3', 2, None), (5, '2', '2', '3', '3', 2, None), (6, '22232323', '小欧', 'str', 'str', 1, None), (7, '22232323', '小欧s', 'str', 'str', 1, None), (8, '', '', '', '', 33, None), (9, '22232323', '小欧s', 'str', 'str', 1, None), (10, '22232323', '小欧s', 'str', 'str', 0, None), (11, 'sddasd', 'sdsd', 'sdsd', '55555', 222, None), (12, '', 'ds    sd ', 'sf 方式  dfsf', 'tes434t', 133, None), (13, '22232323', 'str', 'str', 'str', 1, datetime.datetime(2023, 5, 12, 10, 40, 53)), (14, '22232323', 'str', 'str', 'str', 1, None), (15, '22232323', 'str', 'str', 'str', 1, datetime.datetime(2023, 5, 12, 11, 0, 21, 340856)), (16, '22232323', 'str', '1111', 'str', 1, datetime.datetime(2023, 5, 12, 11, 8, 55, 574281)), (17, '22232323', 'str', 'None', 'None', 1, datetime.datetime(2023, 5, 12, 15, 54, 48)), (18, '22232323', 'str', '', '', 1, datetime.datetime(2023, 5, 12, 15, 55, 29)), (19, 'sdfsf', 'f', None, 'fsd', None, None)] 
+2023-05-12 15:56:47,360 - DEBUG - debug_sql - SELECT * FROM product 
+2023-05-12 15:56:47,365 - INFO - E:\test\qc-web\qc-api\.\api\index\product.py[line: 14] - 获取列表数据：[(1, 'http://pic-ighk-test.madnest.net/pic/202304/1681809966643.png', 'IGameBuy-香港-测试环境', 'https://www-ighk-test.madnest.net/', 'test', 1, None), (2, '2', '2', '3', '3', 2, None), (3, '2', '2', '3', '3', 2, None), (4, '2', '2', '3', '3', 2, None), (5, '2', '2', '3', '3', 2, None), (6, '22232323', '小欧', 'str', 'str', 1, None), (7, '22232323', '小欧s', 'str', 'str', 1, None), (8, '', '', '', '', 33, None), (9, '22232323', '小欧s', 'str', 'str', 1, None), (10, '22232323', '小欧s', 'str', 'str', 0, None), (11, 'sddasd', 'sdsd', 'sdsd', '55555', 222, None), (12, '', 'ds    sd ', 'sf 方式  dfsf', 'tes434t', 133, None), (13, '22232323', 'str', 'str', 'str', 1, datetime.datetime(2023, 5, 12, 10, 40, 53)), (14, '22232323', 'str', 'str', 'str', 1, None), (15, '22232323', 'str', 'str', 'str', 1, datetime.datetime(2023, 5, 12, 11, 0, 21, 340856)), (16, '22232323', 'str', '1111', 'str', 1, datetime.datetime(2023, 5, 12, 11, 8, 55, 574281)), (17, '22232323', 'str', 'None', 'None', 1, datetime.datetime(2023, 5, 12, 15, 54, 48)), (18, '22232323', 'str', '', '', 1, datetime.datetime(2023, 5, 12, 15, 55, 29)), (19, 'sdfsf', 'f', None, 'fsd', None, None)] 
+2023-05-12 15:57:16,859 - DEBUG - debug_sql - 
+                UPDATE product
+                SET images= '222323293', title= '', sort_key= 133
+                WHERE id = 12
+     
+2023-05-12 15:59:24,086 - DEBUG - debug_sql - 
+                UPDATE product
+                SET images= '222323293', title= '', sort_key= 133
+                WHERE id = 18
+     
+2023-05-12 15:59:53,195 - DEBUG - debug_sql - 
+                UPDATE product
+                SET images= '222323293', title= '', url= 'sf   dfsf', env= 'test'
+                WHERE id = 18
+     
+2023-05-12 16:00:14,703 - DEBUG - debug_sql - 
+                UPDATE product
+                SET title= '你们好'
+                WHERE id = 18
+     
+2023-05-12 16:00:47,554 - DEBUG - debug_sql - 
+               INSERT INTO 
+                    product (images, title, url, env, sort_key, create_time) 
+               VALUES 
+                    ('22232323','str','','','1','2023-05-12 16:00:35')
+                
+2023-05-12 17:09:02,514 - DEBUG - debug_sql - 
+            DELETE FROM product
+            WHERE id = 19
+     
+2023-05-12 17:10:08,499 - DEBUG - debug_sql - 
+            DELETE FROM product
+            WHERE id = 19
+     
+2023-05-12 17:10:20,384 - DEBUG - debug_sql - 
+            DELETE FROM product
+            WHERE id = 18
+     

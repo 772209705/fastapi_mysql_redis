@@ -1,0 +1,216 @@
+# uvicorn main:app --host=127.0.0.1 --port=8005 --reload
+# api路由
+# router.include_router(login_router, prefix="/user", tags=["登录文件"])
+from fastapi import FastAPI, Query, Path, Body, File, UploadFile, HTTPException, Depends
+
+from typing import Union, List, Set, Any
+
+from fastapi.security import OAuth2PasswordBearer
+from pydantic import BaseModel, Field, EmailStr
+from starlette.responses import HTMLResponse
+
+import upload_file
+
+app = FastAPI()
+
+
+# Field 在实体类模型字段中使用  Path、Query、Body、Form 在def 操作方法中参数字段使用
+
+
+class Item(BaseModel):
+    name: str = Field(
+        default=None, title="这是个名称字段", max_length=300
+    )
+    description: Union[str, None] = None
+    price: float
+    tax: Union[float, None] = None
+    tags: List[str] = []
+    tags2: Set[str] = set()  # 唯一数据，使你收到带有重复数据的请求，这些数据也会被转换为一组唯一项。
+
+
+class User(BaseModel):
+    username: str
+    full_name: Union[str, None] = None
+
+
+@app.get("/", name="首页", tags=["首页模块"])
+async def root():
+    return ""
+
+
+@app.get("/1")
+async def main():
+    content = """
+    <body>
+    <form action="/files/" enctype="multipart/form-data" method="post">
+    <input name="files" type="file" multiple>
+    <input type="submit">
+    </form>
+    <form action="/uploadfiles/" enctype="multipart/form-data" method="post">
+    <input name="files" type="file" multiple>
+    <input type="submit">
+    </form>
+    </body>
+        """
+    return HTMLResponse(content=content)
+
+
+@app.get("/hello/{name}")
+async def say_hello(name: str):
+    return {"message": f"Hello {name}"}
+
+
+@app.get("/items/{item_id}", name="查询", tags=["首页模块"], summary="查询首页数据", description="描述")
+def read_item(item_id: int, q: Union[str, None] = None):
+    return {"item_id": item_id, "q": q}
+
+
+@app.put("/items2/{item_id}")
+def update_item(item_id: int, item: Item):
+    return {"item_name": item.name, "item_id": item_id, "item_p": item.price}
+
+
+fake_items_db = [{"item_name": "Foo"}, {"item_name": "Bar"}, {"item_name": "Baz"}]
+
+
+@app.get("/items/")
+async def read_item(skip: int = 0, limit: int = 10):
+    return fake_items_db[skip: skip + limit]
+
+
+@app.get("/items3/{item_id}")
+async def read_item(item_id: str, q: Union[str, None] = None, short: bool = False):
+    item = {"item_id": item_id}
+    if q:
+        item.update({"q": q})
+    if not short:
+        item.update(
+            {"description": "This is an amazing item that has a long description"}
+        )
+    return item
+
+
+@app.get("/items/suu")
+async def read_items(
+        q: Union[str, None] = Query(default=None, title="查询itmes中的方法",
+                                    description="要在数据库中搜索的匹配项的查询字符串",
+                                    min_length=3)
+):
+    results = {"items": [{"item_id": "Foo"}, {"item_id": "Bar"}]}
+    if q:
+        results.update({"q": q})
+    return results
+
+
+@app.get("/items/{item_id}/1")
+async def read_items(
+        item_id: int = Path(title="要获取的项目的ID"),
+        q: Union[str, None] = Query(default=None, alias="item-query"),
+):
+    results = {"item_id": item_id}
+    if q:
+        results.update({"q": q})
+    return results
+
+
+# 多请求体
+@app.put("/items-2/{item_id}")
+async def update_item(item_id: int, item: Item, user: User, importance: str = Body()):
+    results = {"item_id": item_id, "item": item, "user": user, "importance": importance}
+    return results
+
+
+@app.put("/items-3/{item_id}")
+async def update_item(
+        *,
+        item_id: int,
+        item: Item,
+        user: User,
+        importance: int = Body(gt=0),
+        q: Union[str, None] = None,
+):
+    results = {"item_id": item_id, "item": item, "user": user, "importance": importance}
+    if q:
+        results.update({"q": q})
+    return results
+
+
+@app.put("/items-4/{item_id}")
+async def update_item(item_id: int, item: Item = Body(embed=True)):
+    results = {"item_id": item_id, "item": item}
+    return results
+
+
+# 输入模型
+class UserIn(BaseModel):
+    username: str
+    password: str
+    email: EmailStr
+    full_name: Union[str, None] = None
+
+
+# 输出模型
+class UserOut(BaseModel):
+    username: str
+    email: EmailStr
+    full_name: Union[str, None] = None
+
+
+@app.post("/user/", response_model=UserOut)  # response_model 响应模型 VO类
+async def create_user(user: UserIn) -> Any:
+    return user
+
+
+items_db = {
+    "foo": {"name": "Foo", "price": 50.2, "password": "100000aaa"},
+    "bar": {"name": "Bar", "description": "The bartenders", "price": 62, "tax": 20.2},
+    "baz": {"name": "Baz", "description": None, "price": 50.2, "tax": 10.5, "tags": []},
+}
+
+
+class ItemVO(BaseModel):
+    name: str
+    description: Union[str, None] = None
+    price: float
+    tax: float = 10.5
+    tags: List[str] = []
+
+
+# response_model_exclude_unset = True 表示只显示 有值的字段，没有实际值的字段则不返回 False则相反
+@app.get("/items-7/{item_id}", response_model=ItemVO, response_model_exclude_unset=True)
+async def read_item(item_id: str):
+    return items_db[item_id]
+
+
+@app.post("/files/")
+async def create_file(file: bytes = File()):
+    return {"file_size": len(file)}
+
+
+@app.post("/uploadfile/")
+async def create_upload_file(file: UploadFile):
+    print(file)
+    return {"filename": file.filename}
+
+
+# 多文件上传
+@app.post("/files/")
+async def create_files(files: List[bytes] = File()):
+    return {"file_sizes": [len(file) for file in files]}
+
+
+@app.post("/uploadfiles/")
+async def create_upload_files(files: List[UploadFile]):
+    return {"filenames": [file.filename for file in files]}
+
+
+
+
+app = FastAPI()
+
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+
+
+@app.get("/token")
+async def read_items(token: str = Depends(oauth2_scheme)):
+    return {"token": token}
