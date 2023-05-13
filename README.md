@@ -1,7 +1,7 @@
 # 项目 fastapi 后端
 
 ## 项目架构
-
+```
 ├── api                               #包含各种API的模块，例如索引、上传、用户、WebSocket等。
 
 │   ├── __init__.py
@@ -89,7 +89,7 @@
 ├── main.py                    # 应用程序主入口文件
 
 ├── main.py.backups
-
 ├── README.md             # 应用程序的说明文档
-
 ├── test_main.http          # 测试模块
+
+```
