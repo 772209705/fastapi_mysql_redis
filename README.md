@@ -7,7 +7,9 @@
 ![WebSocket](https://img.shields.io/badge/WebSocket-8.0-orange)
 
 ### 启动
-uvicorn main:app --host=127.0.0.1 --port=8005 --reload
+```  
+uvicorn main:app --host=127.0.0.1 --port=8005 --reload  
+```
 
 ## 项目架构
 ```
