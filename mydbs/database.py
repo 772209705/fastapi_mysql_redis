@@ -11,8 +11,8 @@ def init_db_engine():
         engine = create_engine(
             "mysql+pymysql://{}:{}@{}:{}/{}".format(Config.username, Config.password, Config.host, Config.port, Config.db_name),
             poolclass=QueuePool,
-            pool_size=5,
-            max_overflow=20,
+            pool_size=10,
+            max_overflow=100,
             pool_timeout=30
         )
 

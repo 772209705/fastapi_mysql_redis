@@ -1,12 +1,16 @@
 from fastapi import APIRouter
 
-from mydbs.db_method import delete_sql
+from mydbs.redis_method import redis
 
 router = APIRouter()
 
 
-@router.get('/get/product/list')
+@router.get('/list')
 async def get_users():
-    product = delete_sql("DELETE FROM product WHERE id = 2")
+    redis__set = redis().set("key", "ni you fun")
 
-    return product
+    print(redis__set)
+
+    return {redis__set}
+
+
