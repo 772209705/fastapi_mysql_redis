@@ -1,8 +1,9 @@
 # 项目 fastapi 后端
 ```
 python `3.8.9` 
-![Python Version](https://img.shields.io/badge/Python-3.8.9-blue.svg)
+
 ```
+![Python Version](https://img.shields.io/badge/Python-3.8.9-blue.svg)
 # uvicorn main:app --host=127.0.0.1 --port=8005 --reload
 
 ## 项目架构
