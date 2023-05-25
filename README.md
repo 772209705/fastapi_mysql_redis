@@ -1,5 +1,16 @@
 # 项目 fastapi 后端
 
+![Python Version](https://img.shields.io/badge/Python-3.8.9-blue.svg)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.95.1-green)
+![Redis](https://img.shields.io/badge/Redis-4.5.5-red)
+![MySQL](https://img.shields.io/badge/MySQL-5.7.1-blue)
+![WebSocket](https://img.shields.io/badge/WebSocket-8.0-orange)
+
+### 启动
+```  
+uvicorn main:app --host=127.0.0.1 --port=8005 --reload  
+```
+
 ## 项目架构
 ```
 ├── api                               #包含各种API的模块，例如索引、上传、用户、WebSocket等。
