@@ -4,6 +4,9 @@ from typing import Union
 
 
 def success(*, data: Union[list, dict, str]) -> Response:
+    # 判断 数据库 类型 list
+    if isinstance(data, list):
+        data = [dict(row) for row in data]
     return ORJSONResponse(
         status_code=status.HTTP_200_OK,
         content={
