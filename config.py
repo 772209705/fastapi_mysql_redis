@@ -11,6 +11,7 @@ class Config:
     host = "172.16.0.67"
     port = "3306"
     db_name = "qc"
+    pool_size = 50
 
     # redis 配置
     redis_host = "127.0.0.1"

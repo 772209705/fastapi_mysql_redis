@@ -7,7 +7,8 @@ from config import Config
 
 
 class ConnectionPool:
-    def __init__(self, pool_size=10):
+    def __init__(self, ):
+        pool_size = Config.pool_size
         self.pool_size = pool_size
         self.pool = Queue(maxsize=pool_size)
         self.lock = Lock()

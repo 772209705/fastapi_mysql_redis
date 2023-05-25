@@ -2,8 +2,8 @@ from common.logger import log
 from mydbs.database import ConnectionPool
 
 # 创建连接池实例
-connection_pool = ConnectionPool()
 log.warn("创建连接池成功")
+connection_pool = ConnectionPool()
 
 
 def query_sql(_sql: str):
