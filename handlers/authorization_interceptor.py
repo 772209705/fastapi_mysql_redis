@@ -30,7 +30,7 @@ async def http_exception_handler(request, exc):
 
 # 自定义未知异常拦截器
 async def exception_handler(request, exc):
-    log.error(exc)
+    log.error(str(exc))
     return ORJSONResponse(
         status_code=status.HTTP_511_NETWORK_AUTHENTICATION_REQUIRED,
         content={
