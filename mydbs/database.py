@@ -1,29 +1,39 @@
-from sqlalchemy.pool import QueuePool
 from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from queue import Queue, Empty
+from threading import Lock
+from contextlib import contextmanager
 from config import Config
 
-engine = None
 
+class ConnectionPool:
+    def __init__(self, pool_size=10):
+        self.pool_size = pool_size
+        self.pool = Queue(maxsize=pool_size)
+        self.lock = Lock()
 
-def init_db_engine():
-    global engine
-    if engine is None:
+        for _ in range(pool_size):
+            self.create_connection()
+
+    def create_connection(self):
         engine = create_engine(
-            "mysql+pymysql://{}:{}@{}:{}/{}".format(Config.username, Config.password, Config.host, Config.port, Config.db_name),
-            poolclass=QueuePool,
-            pool_size=10,
-            max_overflow=100,
-            pool_timeout=30
+            f"mysql+pymysql://{Config.username}:{Config.password}@{Config.host}:{Config.port}/{Config.db_name}"
         )
+        Session = sessionmaker(bind=engine)
+        _session = Session()
+        self.pool.put(_session)
 
+    @contextmanager
+    def get_connection(self):
+        try:
+            _session = self.pool.get(block=False)
+        except Empty:
+            with self.lock:
+                if self.pool.qsize() < self.pool_size:
+                    self.create_connection()
+            _session = self.pool.get()
 
-class Connection:
-    def __init__(self):
-        self.conn = None
-
-    def __enter__(self):
-        self.conn = engine.connect()
-        return self.conn
-
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        self.conn.close()
+        try:
+            yield _session
+        finally:
+            self.pool.put(_session)
