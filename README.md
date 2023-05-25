@@ -61,3 +61,16 @@ uvicorn main:app --host=127.0.0.1 --port=8005 --reload
 ├── test_main.http                    # 测试模块
 
 ```
+## 项目库
+```
+    fastapi == 0.95.1
+    colorlog
+    sqlalchemy == 2.0.13
+    uvicorn
+    jsonpath
+    python-multipartß
+    pymysql
+    redis
+    websocket
+    sqlalchemy
+```
