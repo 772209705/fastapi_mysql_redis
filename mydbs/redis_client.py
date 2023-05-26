@@ -1,47 +1,41 @@
 import redis
-from queue import Queue, Empty
-from threading import Lock
-from contextlib import contextmanager
+from urllib3.exceptions import EmptyPoolError
+
+from common.logger import log
 from config import Config
+
+engine = None
+
+
+def init_redis_engine():
+    global engine
+    if engine is None:
+        engine = redis.ConnectionPool(
+            host=Config.redis_host,
+            port=Config.redis_port,
+            db=Config.redis_db,
+            password=Config.redis_password,
+            max_connections=Config.max_connections,
+            socket_keepalive=True,
+            socket_timeout=60
+        )
+
+
+start_redis = redis.Redis(connection_pool=engine)
 
 
 class RedisConnectionPool:
     def __init__(self):
-        self.host = Config.redis_host
-        self.port = Config.redis_port
-        self.db = Config.redis_db
-        self.password = Config.redis_password
-        self.max_connections = Config.max_connections
-        self.socket_keepalive = True
+        self.conn = None
 
-        self.pool = Queue(maxsize=Config.max_connections)
-        self.lock = Lock()
-
-        for _ in range(Config.max_connections):
-            self.create_connection()
-
-    def create_connection(self):
-        _connection = redis.Redis(
-            host=self.host,
-            port=self.port,
-            db=self.db,
-            password=self.password,
-            socket_keepalive=self.socket_keepalive
-        )
-        self.pool.put(_connection)
-
-    @contextmanager
-    def get_connection(self):
+    def __enter__(self):
         try:
-            _connection = self.pool.get(block=False)
-        except Empty:
-            with self.lock:
-                if self.pool.qsize() < self.max_connections:
-                    self.create_connection()
-            _connection = self.pool.get()
+            self.conn = start_redis
+        except EmptyPoolError:
+            log.error("redis连接失败,重新创建redis连接池")
+            init_redis_engine()
+            self.conn = start_redis
+        return self.conn
 
-        try:
-            yield _connection
-        finally:
-            self.pool.put(_connection)
-
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.conn.close()

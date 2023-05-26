@@ -1,40 +1,39 @@
+from sqlalchemy.pool import QueuePool
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from queue import Queue, Empty
-from threading import Lock
-from contextlib import contextmanager
+from urllib3.exceptions import EmptyPoolError
+
+from common.logger import log
 from config import Config
+
+engine = None
+
+
+def init_db_engine():
+    global engine
+    if engine is None:
+        engine = create_engine(
+            "mysql+pymysql://{}:{}@{}:{}/{}".format(Config.username, Config.password, Config.host, Config.port, Config.db_name),
+            poolclass=QueuePool,
+            pool_size=10,
+            max_overflow=100,
+            pool_timeout=10,
+            pool_recycle=3600,
+            pool_pre_ping=True
+        )
 
 
 class ConnectionPool:
-    def __init__(self, ):
-        pool_size = Config.pool_size
-        self.pool_size = pool_size
-        self.pool = Queue(maxsize=pool_size)
-        self.lock = Lock()
+    def __init__(self):
+        self.conn = None
 
-        for _ in range(pool_size):
-            self.create_connection()
-
-    def create_connection(self):
-        engine = create_engine(
-            f"mysql+pymysql://{Config.username}:{Config.password}@{Config.host}:{Config.port}/{Config.db_name}"
-        )
-        Session = sessionmaker(bind=engine)
-        _session = Session()
-        self.pool.put(_session)
-
-    @contextmanager
-    def get_connection(self):
+    def __enter__(self):
         try:
-            _session = self.pool.get(block=False)
-        except Empty:
-            with self.lock:
-                if self.pool.qsize() < self.pool_size:
-                    self.create_connection()
-            _session = self.pool.get()
+            self.conn = engine.connect()
+        except EmptyPoolError:
+            log.error("失败，测试数据库连接")
+            init_db_engine()
+            self.conn = engine.connect()
+        return self.conn
 
-        try:
-            yield _session
-        finally:
-            self.pool.put(_session)
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.conn.close()
