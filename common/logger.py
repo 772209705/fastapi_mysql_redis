@@ -29,14 +29,12 @@ class Logger:
             style='%'
         )
 
-
         formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s ")
 
         if log_file:
             handler = logging.FileHandler(log_file, encoding='utf-8')
         else:
             handler = logging.StreamHandler()
-
 
         # 输出日志到文件
         handler.setLevel(level)
@@ -70,7 +68,7 @@ class Logger:
         self.logger.warning(f"{filename}[line: {lineno}] -  {message}")
 
     def debug(self, message):
-        print("debug"+message)
+        print("debug" + message)
         frame = inspect.currentframe().f_back
         filename = inspect.getframeinfo(frame).filename
         lineno = inspect.getframeinfo(frame).lineno
@@ -80,7 +78,6 @@ class Logger:
     def debug_sql(self, message):
 
         self.logger.debug(f"debug_sql - {message}")
-
 
 
 log = Logger(level=logging.DEBUG, log_file="app.log")
