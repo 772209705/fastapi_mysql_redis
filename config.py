@@ -1,6 +1,6 @@
 class Config:
     # fastapi服务
-    fastapi_port = "8005"
+    fastapi_port = "8000"
 
     # websocket服务
     websocket = "/ws"
@@ -19,3 +19,4 @@ class Config:
     redis_db = 0
     redis_password = ""
     max_connections = 100
+    token_expire_seconds = 3600
