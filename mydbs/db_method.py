@@ -7,7 +7,14 @@ log.warn("创建数据库连接池")
 Connection = ConnectionPool()
 
 
-def query_sql(_sql: str):
+def query_sql_one(_sql: str):
+    log.debug_sql(_sql)
+    with Connection as conn:
+        result = conn.execute(_sql).fetchone()
+        return result
+
+
+def query_sql_all(_sql: str):
     log.debug_sql(_sql)
     with Connection as conn:
         result = conn.execute(_sql).fetchall()
