@@ -2,7 +2,6 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from api.websocket.websocket import websocket_handler
 from config import Config
-from mydbs.database import init_db_engine
 from routers.router import router as api_router
 from handlers.authorization_interceptor import authorization_interceptor_handler, http_exception_handler, \
     exception_handler
@@ -13,8 +12,6 @@ app = FastAPI()
 app.include_router(api_router)
 app.add_websocket_route(Config.websocket, websocket_handler)
 
-# 初始化数据库连接池
-init_db_engine()
 
 # 注入请求拦截器
 app.middleware("http")(authorization_interceptor_handler)
