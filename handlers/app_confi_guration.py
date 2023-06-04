@@ -5,4 +5,4 @@
 
 excluded_routes = list()
 
-excluded_routes.append("/list")
+excluded_routes.append("/login")
