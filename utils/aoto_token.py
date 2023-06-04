@@ -2,6 +2,9 @@ import jwt
 import secrets
 from datetime import datetime
 
+# token管理器
+token_manage = dict()
+
 
 class AutoToken:
     def __init__(self, secret_key=None, expiration_minutes=30):
@@ -20,9 +23,12 @@ class AutoToken:
             'unique': data,
             'exp': expiration
         }
-
         # 生成token
-        token = jwt.encode(payload, self.secret_key)
+        if data not in token_manage:
+            token = jwt.encode(payload, self.secret_key)
+            token_manage[data] = token
+        else:
+            token = token_manage[data]
         return token
 
     def auto_token_get_user_data(self, token: str):
