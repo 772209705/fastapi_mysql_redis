@@ -65,12 +65,12 @@ uvicorn main:app --host=127.0.0.1 --port=8005 --reload
 ```
     fastapi == 0.95.1
     colorlog
-    sqlalchemy == 2.0.13
     uvicorn
     jsonpath
     python-multipartß
     pymysql
     redis
     websocket
-    sqlalchemy
+    sqlalchemy==1.4.48
+    orjson
 ```
