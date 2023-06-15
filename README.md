@@ -6,6 +6,7 @@
 ![MySQL](https://img.shields.io/badge/MySQL-5.7.1-blue)
 ![WebSocket](https://img.shields.io/badge/WebSocket-8.0-orange)
 
+python+fastapi+MySQL+redis，封装开箱即用项目框架，封装SQL参数工具，全局权限拦截器token处理，全局异常处理，全局统一返回格式，无私贡献开源，请点点star谢谢
 ### 启动
 ```  
 uvicorn main:app --host=127.0.0.1 --port=8005 --reload  
